@@ -11,4 +11,10 @@ function solution(s) {
   return s.length == 4 || s.length == 6 ? answer : false;
 }
 
+function solution2(s) {
+  const regExp = /^\d{4}$ | ^\d{6}$/;
+
+  return regExp.test(s);
+}
+
 console.log(solution("a123"));
