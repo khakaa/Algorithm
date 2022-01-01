@@ -1,9 +1,9 @@
 function solution(new_id) {
   let answer = new_id
     .toLowerCase()
-    // \w : 영숫자+"_" // [] : 문자 클래스
+    // \w : 밑줄 문자를 포함한 영숫자 문자 == [A-Za-z0-9_] // [] : 문자 클래스
     .replace(/[^\w\-\.]/g, "")
-    // {m,n} : m회 이상 n회 이하
+    // {m,} : 최소 m개 이상
     .replace(/\.{2,}/g, ".")
     // | : 가능성 있는 힝목들을 구별하여 선택
     .replace(/^\.|\.$/g, "")
