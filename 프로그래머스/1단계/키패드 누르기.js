@@ -1,46 +1,46 @@
+const KEYPAD = {
+  1: [0, 0],
+  2: [0, 1],
+  3: [0, 2],
+  4: [1, 0],
+  5: [1, 1],
+  6: [1, 2],
+  7: [2, 0],
+  8: [2, 1],
+  9: [2, 2],
+  "*": [3, 0],
+  0: [3, 1],
+  "#": [3, 2],
+};
+
+function disCalculate(num, hand, lCurrent, rCurrent) {
+  let lDistance =
+    Math.abs(KEYPAD[num][0] - KEYPAD[lCurrent][0]) +
+    Math.abs(KEYPAD[num][1] - KEYPAD[lCurrent][1]);
+  let rDistance =
+    Math.abs(KEYPAD[num][0] - KEYPAD[rCurrent][0]) +
+    Math.abs(KEYPAD[num][1] - KEYPAD[rCurrent][1]);
+
+  if (lDistance === rDistance) return hand === "right" ? "R" : "L";
+
+  return lDistance < rDistance ? "L" : "R";
+}
+
 function solution(numbers, hand) {
+  let lCurrent = "*";
+  let rCurrent = "#";
   let answer = "";
 
-  function dis(num, rCurrent, lCurrent, hand) {
-    const keypad = {
-      1: [0, 0],
-      2: [0, 1],
-      3: [0, 2],
-      4: [1, 0],
-      5: [1, 1],
-      6: [1, 2],
-      7: [2, 0],
-      8: [2, 1],
-      9: [2, 2],
-      "*": [3, 0],
-      0: [3, 1],
-      "#": [3, 2],
-    };
-
-    let rdistance =
-      Math.abs(keypad[num][0] - keypad[rCurrent][0]) +
-      Math.abs(keypad[num][1] - keypad[rCurrent][1]);
-    let ldistance =
-      Math.abs(keypad[num][0] - keypad[lCurrent][0]) +
-      Math.abs(keypad[num][1] - keypad[lCurrent][1]);
-
-    if (rdistance === ldistance) return hand === "left" ? "L" : "R";
-
-    return rdistance > ldistance ? "L" : "R";
-  }
-
-  let rCurrent = "*";
-  let lCurrent = "#";
-  for (let num of numbers) {
-    if (num % 3 === 1) {
+  for (let n of numbers) {
+    if (n % 3 === 1) {
       answer += "L";
-      lCurrent = num;
-    } else if (num % 3 === 0 && num > 0) {
+      lCurrent = n;
+    } else if (n % 3 === 0 && n > 0) {
       answer += "R";
-      rCurrent = num;
+      rCurrent = n;
     } else {
-      answer += dis(num, rCurrent, lCurrent, hand);
-      answer[answer.length - 1] === "L" ? (lCurrent = num) : (rCurrent = num);
+      answer += disCalculate(n, hand, lCurrent, rCurrent);
+      answer[answer.length - 1] === "L" ? (lCurrent = n) : (rCurrent = n);
     }
   }
   return answer;
