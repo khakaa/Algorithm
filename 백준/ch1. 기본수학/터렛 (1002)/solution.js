@@ -1,6 +1,6 @@
 const input = require("fs").readFileSync("dev/stdin").toString().split("\n");
 
-const input = ["3", "0 0 13 40 0 37", "0 0 3 0 7 4", "1 1 1 1 1 5"];
+// const input = ["3", "0 0 13 40 0 37", "0 0 3 0 7 4", "1 1 1 1 1 5"];
 const n = input.shift() * 1;
 
 for (let i = 0; i < n; i++) {
