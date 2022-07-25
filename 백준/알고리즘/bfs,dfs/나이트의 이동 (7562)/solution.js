@@ -17,32 +17,27 @@ let queue = [];
 
 const bfs = (boardSize, end, board) => {
   while (queue.length > 0) {
-    // console.log(queue);
-
     let [x, y, d] = queue.shift();
-    console.log(x, y, d);
 
-    if (x === end[1] && y === end[0]) {
+    if (x === end[0] && y === end[1]) {
       return d;
     }
 
     for (xy of dyx) {
-      let nx = x + xy[1];
-      let ny = x + xy[0];
+      let nx = x + xy[0];
+      let ny = y + xy[1];
 
       if (
         nx >= 0 &&
         nx < boardSize &&
         ny >= 0 &&
         ny < boardSize &&
-        board[ny][nx] === 0
+        board[nx][ny] === 0
       ) {
-        board[ny][nx] = 1;
+        board[nx][ny] = 1;
         queue.push([nx, ny, d + 1]);
-        console.log("nx, ny", nx, ny);
       }
     }
-    console.log("==================");
   }
 };
 
@@ -54,7 +49,7 @@ for (let i = 0; i < tc; i++) {
   let end = input[index + 2].split(" ").map(Number);
 
   queue = [[...start, 0]];
-  board[start[1]][start[0]] = 1;
+  board[start[0]][start[1]] = 1;
 
   console.log(bfs(boardSize, end, board));
   index += 3;

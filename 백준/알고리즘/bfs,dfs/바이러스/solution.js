@@ -20,7 +20,10 @@ for (let i = 0; i < pair; i++) {
   comObj[b].push(a);
 }
 
+console.log(comObj);
+
 while (stack.length) {
+  console.log(stack);
   let node = stack.pop();
 
   for (idx of comObj[node]) {
