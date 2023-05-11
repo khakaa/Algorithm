@@ -2,7 +2,6 @@ from collections import defaultdict, deque
 
 def solution(tickets):
     dic = defaultdict(list)
-    answer = ['ICN']
     
     for a, b in tickets:
         dic[a].append(b)
