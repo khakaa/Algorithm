@@ -13,4 +13,6 @@ def solution(number, k):
                 break
         stack.append(n)
     
-    return number[:len(number)-k] if k > 0 else ''.join(stack)
+    if k > 0:
+        stack = stack[:-k]
+    return ''.join(stack)
