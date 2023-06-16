@@ -11,7 +11,7 @@ for _ in range(t):
         answer.append(ans)
     else:
         for i in range(n - 1):
-            if phone_book[i] == phone_book[i+1][:len(phone_book[i])]:
+            if phone_book[i] in phone_book[i+1][:len(phone_book[i])]:
                 ans = "NO"
                 break
     print(ans)
