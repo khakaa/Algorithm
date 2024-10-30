@@ -12,7 +12,7 @@ function solution(n, times) {
             start = mid + 1;
         } else {
             end = mid - 1;
-            answer = mid
+            answer = mid;
         }
     }
     return answer;
