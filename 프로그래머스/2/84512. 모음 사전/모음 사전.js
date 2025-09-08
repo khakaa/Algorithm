@@ -1,24 +1,19 @@
 function solution(word) {
-    let answer = 0;
-    const alphabet = ['A', 'E', 'I', 'O', 'U'];
+    let words = []
+    const alphabet = ['A','E','I','O','U']
     
-    function dfs(string, word) {
-        answer += 1;
-        
-        if (string === word) {
-            return true;    
-        }
-        
-        if (string.length === 5) {
-            return false;
-        }
+    function dfs(cur) {
+        if (cur.length === 5) return false
         
         for (let alpha of alphabet) {
-            if (dfs(string+alpha, word)) return true;
+            let newWord = cur + alpha
+            words.push(newWord)
+            dfs(newWord)
         }
     }
-    for (let alpha of alphabet){
-        if (dfs(alpha, word)) return answer
-    }
+    
+    dfs('')
+    
+    return words.indexOf(word) + 1
     
 }
