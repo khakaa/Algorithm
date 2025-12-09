@@ -4,12 +4,13 @@ function solution(numbers) {
     let permutations = []
     let primeCount = 0
     
-    function backTracking(numLength, numString, visited) {
-        
+    function backTracking(numLength, numString, visited) {        
         if (numString.length === numLength) {
             const num = Number(numString)
-            if (!permutations.includes(num) && num !== 1 && num > 0){
+            
+            if (!permutations.includes(num)){
                 permutations.push(num)
+                if (checkPrime(num)) primeCount += 1
             }
             return
         }
@@ -29,20 +30,15 @@ function solution(numbers) {
         backTracking(i, '', visited)
     }
     
-    
-    for (let p of permutations) {
-        let isPrime = true
+    function checkPrime(number) {
+        if (number === 0) return false
+        if (number === 1) return false
         
-        for (let i=2; i<=Math.floor(Math.sqrt(p)); i++) {
-            if (p % i === 0) {
-                isPrime = false
-                break
-            }
+        for (let i=2; i<=Math.sqrt(number); i++) {
+            if (number % i === 0) return false
         }
         
-        if (isPrime) {
-            primeCount += 1                      
-        }
+        return true
     }
     
     return primeCount
